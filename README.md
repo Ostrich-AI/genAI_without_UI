@@ -1,41 +1,84 @@
-# genAI_without_UI
+# Ostrich-AI/genAI_without_UI
 
-Public command-line generative AI inference demonstration.
+Sample headless GenAI workload. Use synthetic inputs and an explicitly selected model/provider.
 
-## Start here
+## Source baseline
 
-| Need | Read |
-|---|---|
-| Setup and operating context | [Handover guide](docs/HANDOVER.md) |
-| Source layout and architecture | [Architecture](docs/ARCHITECTURE.md) |
-| Provisional owner and contribution evidence | [Contributions](docs/CONTRIBUTIONS.md) |
+| Field | Value |
+| --- | --- |
+| Reviewed branch | main |
+| Reviewed SHA | bb7a17bcfef1168dea85afe8214ac38f3d2debba |
+| GitHub default | main |
+| Source class | Wider platform / sample / tooling |
+| Validation | Source/manifests inspected; application execution not claimed |
 
-## Source and ownership
+The reviewed branch is a concrete coding baseline, not proof of the staging image. Reproduce a deployed issue using its actual image/source manifest. A different default branch may contain older code.
 
-- Default branch reviewed: `main` at `3e78f511f4a9969fc866d358d0705b94c7eac238`.
-- Setup/source ref used for this guide: [`3e78f511f4a9969fc866d358d0705b94c7eac238`](https://github.com/Ostrich-AI/genAI_without_UI/tree/3e78f511f4a9969fc866d358d0705b94c7eac238).
-- Provisional technical owner: [@rahul-parmar-01](https://github.com/rahul-parmar-01). This is a contribution-based coordination assignment pending confirmation; no GitHub permissions or review rules are changed.
-- Reviewed 4 selected source/document files across default and staging source where available. This is a documentation/source review, not an exhaustive security audit or a deployed-environment verification.
+## Clone the right repository
 
-## Getting started
-
-Python version from pyproject.toml or the Dockerfile; isolated virtual environment; approved synthetic configuration.
-
-```bash
-python -m venv .venv
-# Activate the virtual environment for your operating system.
-python -m pip install -r requirements.txt
+```sh
+git clone https://github.com/Ostrich-AI/genAI_without_UI.git
+cd genAI_without_UI
+git switch main
+git switch -c feature/your-change
 ```
 
+## Install, run and check
 
-## Working rules
+| Task | Observed command / requirement | Evidence |
+| --- | --- | --- |
+| Install | python -m pip install -r requirements.txt | requirements.txt; activated local virtual environment |
 
-Use synthetic data and approved test access. Keep passwords, tokens and private keys out of the repository and issue discussions. Record source ref, environment and evidence for changes. Before promoting a release, independently verify build, smoke checks, migration, rollback and recovery; this guide does not claim those checks have passed.
+Commands are derived from the selected manifests/entrypoints. Configure only isolated local or approved sandbox dependencies before running tests or migrations. A semicolon in a table separates sequential commands; run them separately in your shell.
 
-## Existing source guides
+## Dependencies
 
-No substantive Markdown guide was present at the reviewed source ref.
+- See the package/image manifest and code map; this component may be documentation, infrastructure, UI or a sample rather than a standalone API.
 
-## Documentation maintenance
+## Where to change code
 
-Update this README and the matching docs when interfaces, dependencies, deployment or support ownership change. Preserve historical evidence and use a reviewed documentation change. Review date: 2026-11-15.
+### Build and deployment
+
+- [Dockerfile](https://github.com/Ostrich-AI/genAI_without_UI/blob/bb7a17bcfef1168dea85afe8214ac38f3d2debba/Dockerfile)
+
+## Configuration, tests and issues
+
+Read [CONFIGURATION.md](docs/onboarding/CONFIGURATION.md) before starting the process. Use [MAINTAINERS.md](MAINTAINERS.md) for issue and access routing. Unit/contract/integration are different boundaries; tests listed in package metadata have not been executed by this documentation task.
+
+Before a pull request: run the available checks, add a focused regression, update affected API/data/worker documentation and name any blocked dependency. No shared root credential is required to submit code. Product defects remain engineering issues rather than hidden documentation omissions.
+
+## Provenance
+
+[Selected source tree](https://github.com/Ostrich-AI/genAI_without_UI/tree/bb7a17bcfef1168dea85afe8214ac38f3d2debba) was inspected on 24 November 2026. Old README clone names and feature claims are not adopted without matching source evidence.
+
+## Contributor navigation
+
+- [Contribution workflow](CONTRIBUTING.md)
+- [Component architecture](docs/onboarding/ARCHITECTURE.md)
+- [Security reporting](SECURITY.md)
+- [Previous README](docs/legacy/README.before-20261124-main.md)
+
+## Concrete sample or installer entry point
+
+The checked Dockerfile starts Ollama, pulls tinyllama, runs `python inference.py` and writes `output/output.csv`. Review the included synthetic input and parameters before running.
+
+```sh
+docker build -t genai-headless-local .
+docker run --name genai-headless-check genai-headless-local
+docker cp genai-headless-check:/app/output ./local-output
+docker rm genai-headless-check
+```
+
+These source-derived commands require Docker, network/model download capacity and a clean execution check. The container is retained until output is copied.
+
+- [inference.py](https://github.com/Ostrich-AI/genAI_without_UI/blob/bb7a17bcfef1168dea85afe8214ac38f3d2debba/inference.py)
+- [Dockerfile](https://github.com/Ostrich-AI/genAI_without_UI/blob/bb7a17bcfef1168dea85afe8214ac38f3d2debba/Dockerfile)
+- [parameters.json](https://github.com/Ostrich-AI/genAI_without_UI/blob/bb7a17bcfef1168dea85afe8214ac38f3d2debba/parameters.json)
+- [Existing docs/HANDOVER.md](docs/HANDOVER.md)
+- [Existing docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+
+## Branch and release boundary
+
+This README is installed on `main`. The reviewed implementation branch is `main`; use it for the setup commands above. Source pins identify the pre-documentation code baseline. Documentation updates do not establish the image running at any portal.
+
+This is a public sample/distribution repository. Its existing license and notices govern reuse; no new license is introduced here.
